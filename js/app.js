@@ -6,9 +6,11 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+
     this.x = Math.floor(Math.random() * (-1 - -5 + 1)) + -5;
     this.y = Math.floor(Math.random() * 3) + 1;
     this.speed = 1;
+
 }
 
 // Update the enemy's position, required method for game
@@ -17,6 +19,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+
     var randSpawn = Math.random() * 5 + 1;
     if (this.x > 5) {
         this.new(randSpawn, allEnemies);
@@ -28,7 +31,7 @@ Enemy.prototype.update = function(dt) {
     this.render()
 }
 
-//1253 wells
+//1253
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 75);
@@ -46,6 +49,11 @@ Enemy.prototype.new = function(num, array) {
             array.push(new Enemy());
         }
     }
+}
+
+// Draw the enemy on the screen, required method for game
+Enemy.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
 }
 
@@ -75,6 +83,13 @@ Player.prototype.handleInput = function(keycode) {
     // Place the player object in a variable called player
 var allEnemies = [new Enemy()];
 var player = new Player(2, 5);
+
+
+
+// Now instantiate your objects.
+// Place all enemy objects in an array called allEnemies
+// Place the player object in a variable called player
+
 
 
 // This listens for key presses and sends the keys to your
