@@ -20,14 +20,15 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
 
-/*    var randSpawn = Math.random() * 5 + 1;
-    if (this.x >= 5) {
-        this.new(randSpawn, allEnemies);
-    }*/
-    
+    /*    var randSpawn = Math.random() * 5 + 1;
+        if (this.x >= 5) {
+            this.new(randSpawn, allEnemies);
+        }*/
+
     if (this.x < 5) {
         this.x = this.x + (this.speed * dt);
-    } else if (this.x >= 5) {
+    }
+    else if (this.x >= 5) {
         this.cleanupPositions(allEnemies);
     }
 
@@ -45,16 +46,15 @@ Enemy.prototype.render = function() {
 // make sure they do not overlap
 // make sure infinite amount are not created.
 Enemy.prototype.new = function(num, array) {
- //   var rand = Math.floor(Math.random() * 10) + 1;
-   // console.log(this)
-      // console.log(array[0])
-      this.cleanupPositions()
+    //   var rand = Math.floor(Math.random() * 10) + 1;
+    // console.log(this)
+    // console.log(array[0])
+    this.cleanupPositions()
     if (num && array) {
         for (var i = 0; i < num; i++) {
             //array.push(new Enemy());
         }
     }
-
 };
 
 Enemy.prototype.cleanupPositions = function(array) {
@@ -62,7 +62,7 @@ Enemy.prototype.cleanupPositions = function(array) {
         if (array[i].x >= 5) {
             array.splice(i, 1);
         }
-    }  
+    }
 }
 
 
@@ -75,36 +75,35 @@ var Player = function(x, y) {
     this.x = x;
     this.y = y;
 };
-Player.prototype.update = function(dt) {
+Player.prototype.update = function() {
 
+    this.render();
 };
 Player.prototype.render = function() {
-    
     ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 73);
 };
 Player.prototype.handleInput = function(keycode) {
-    switch (keycode) {
-        case "up":
-            console.log(keycode);
-            this.y = this.y + 1 * dt;
-            break;
-        case "down":
-            this.y = this.y - 1 * dt;
-            break;
-        case "left":
-            this.x = this.x - 1 * dt;
-            break;
-        case "right":
-            this.x = this.x + 1 * dt;
-            break;
-        default:
-            break;
-    }
-        console.log(this)
+        switch (keycode) {
+            case "up":
+                this.y = this.y - 1;
+                break;
+            case "down":
+                this.y = this.y + 1;
+                break;
+            case "left":
+                this.x = this.x - 1;
+                break;
+            case "right":
+                this.x = this.x + 1;
+                break;
+            default:
+                break;
+        }
+        this.update();
 };
-    // Now instantiate your objects.
-    // Place all enemy objects in an array called allEnemies
-    // Place the player object in a variable called player
+// Now instantiate your objects.
+// Place all enemy objects in an array called allEnemies
+// Place the player object in a variable called player
 var allEnemies = [new Enemy()];
 var player = new Player(2, 5);
 
