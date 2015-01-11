@@ -26,7 +26,8 @@ Enemy.prototype.update = function(dt) {
         this.x = this.x + (this.speed * dt);
     }
     else if (this.x > 500) {
-        this.cleanupPositions(allEnemies);
+        this.x = -200;
+        //this.cleanupPositions(allEnemies);
     }
 };
 
@@ -65,9 +66,13 @@ var Player = function(x, y) {
     this.sprite = 'images/char-boy.png';
     this.x = x;
     this.y = y;
+    this.lives = 4;
 };
 Player.prototype.update = function() {
     //this.render();
+    if (reset()) {
+        console.log("test")
+    }
 };
 
 Player.prototype.render = function() {

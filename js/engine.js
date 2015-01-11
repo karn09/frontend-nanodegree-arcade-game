@@ -104,8 +104,8 @@ var Engine = (function(global) {
                     enemy.x + 40 > player.x &&
                     enemy.y < player.y + 40 &&
                     40 + enemy.y > player.y) {
-                }
                     reset();
+                }   
             });
         }
         /* This function initially draws the "game level", it will then call
@@ -173,6 +173,11 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
+        player.lives = player.lives - 1;
+        player.x = 200;
+        player.y = 390;
+        console.log(player.lives);
+
     }
 
     /* Go ahead and load all of the images we know we're going to need to
