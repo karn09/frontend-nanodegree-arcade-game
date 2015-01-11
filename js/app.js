@@ -7,38 +7,33 @@ var Enemy = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 
-    this.x = Math.floor(Math.random() * -1) + -5;
-    this.y = Math.floor(Math.random() * 2) + 1;
-    this.speed = 1;
+    this.x = randStep(-200, -40, 40)
+    this.y = randStep(65, 325, 80); 
+    this.speed = 80;
 
 };
-
+//http://stackoverflow.com/questions/6136634/js-generatring-a-random-number-going-up-in-20s 
+var randStep = function(min, max, step) {
+    return min + (step * Math.floor(Math.random()*(max-min)/step) );
+}
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-
-    /*    var randSpawn = Math.random() * 5 + 1;
-        if (this.x >= 5) {
-            this.new(randSpawn, allEnemies);
-        }*/
-
-    if (this.x < 5) {
+    if (this.x < 500) {
         this.x = this.x + (this.speed * dt);
     }
-    else if (this.x >= 5) {
+    else if (this.x > 500) {
         this.cleanupPositions(allEnemies);
     }
-
-    this.render();
 };
 
 //1253
 // Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 73);
+Enemy.prototype.render = function() { // changing from 101, 75
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // building out method to handle creation of new monsters
@@ -46,9 +41,6 @@ Enemy.prototype.render = function() {
 // make sure they do not overlap
 // make sure infinite amount are not created.
 Enemy.prototype.new = function(num, array) {
-    //   var rand = Math.floor(Math.random() * 10) + 1;
-    // console.log(this)
-    // console.log(array[0])
     this.cleanupPositions()
     if (num && array) {
         for (var i = 0; i < num; i++) {
@@ -70,42 +62,36 @@ Enemy.prototype.cleanupPositions = function(array) {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function(x, y) {
-    // body...
     this.sprite = 'images/char-boy.png';
     this.x = x;
     this.y = y;
 };
 Player.prototype.update = function() {
-
-    this.render();
+    //this.render();
 };
+
 Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x * 101, this.y * 73);
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 Player.prototype.handleInput = function(keycode) {
-        switch (keycode) {
-            case "up":
-                this.y = this.y - 1;
-                break;
-            case "down":
-                this.y = this.y + 1;
-                break;
-            case "left":
-                this.x = this.x - 1;
-                break;
-            case "right":
-                this.x = this.x + 1;
-                break;
-            default:
-                break;
-        }
-        this.update();
+    if (keycode === 'up' && this.y > 0) {
+        this.y -= 80;
+    }
+    if (keycode === 'down' && this.y < 380) {
+        this.y += 80;
+    }
+    if (keycode === 'left' && this.x > 0) {
+        this.x -= 100;
+    }
+    if (keycode === 'right' && this.x < 400) {
+        this.x += 100;
+    }
 };
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var allEnemies = [new Enemy()];
-var player = new Player(2, 5);
+var player = new Player(200, 390);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
