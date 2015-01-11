@@ -96,35 +96,35 @@ var Engine = (function(global) {
         });
         player.update();
     }
-    
-    function checkCollisions() {
-        allEnemies.forEach(function(enemy) {
-            //console.log(player.x + " " + enemy.x)
-            if (player.x <= (enemy.x) && enemy.x <= (player.x) && 
-                player.y >= (enemy.y) && enemy.y <= (player.y)
-                ) {
 
-                console.log("collide")
-            }
-        });
-    }
-    /* This function initially draws the "game level", it will then call
-     * the renderEntities function. Remember, this function is called every
-     * game tick (or loop of the game engine) because that's how games work -
-     * they are flipbooks creating the illusion of animation but in reality
-     * they are just drawing the entire screen over and over.
-     */
+    function checkCollisions() {
+            allEnemies.forEach(function(enemy) {
+
+                if (enemy.x < player.x + 40 &&
+                    enemy.x + 40 > player.x &&
+                    enemy.y < player.y + 40 &&
+                    40 + enemy.y > player.y) {
+                }
+                    reset();
+            });
+        }
+        /* This function initially draws the "game level", it will then call
+         * the renderEntities function. Remember, this function is called every
+         * game tick (or loop of the game engine) because that's how games work -
+         * they are flipbooks creating the illusion of animation but in reality
+         * they are just drawing the entire screen over and over.
+         */
     function render() {
         /* This array holds the relative URL to the image used
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
+                'images/water-block.png', // Top row is water
+                'images/stone-block.png', // Row 1 of 3 of stone
+                'images/stone-block.png', // Row 2 of 3 of stone
+                'images/stone-block.png', // Row 3 of 3 of stone
+                'images/grass-block.png', // Row 1 of 2 of grass
+                'images/grass-block.png' // Row 2 of 2 of grass
 
             ],
             numRows = 6,
