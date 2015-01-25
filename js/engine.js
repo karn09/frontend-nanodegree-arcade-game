@@ -26,7 +26,7 @@ var Engine = (function(global) {
         lastTime;
 
     canvas.width = 505;
-    canvas.height = 606;
+    canvas.height = 740;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -46,7 +46,7 @@ var Engine = (function(global) {
          * our update function since it may be used for smooth animation.
          */
         update(dt);
-        render();
+        render(false);
 
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
@@ -66,6 +66,7 @@ var Engine = (function(global) {
     function init() {
         reset();
         lastTime = Date.now();
+     
         main();
     }
 
@@ -104,9 +105,14 @@ var Engine = (function(global) {
                     enemy.x + 40 > player.x &&
                     enemy.y < player.y + 40 &&
                     40 + enemy.y > player.y) {
-                    reset();
-                }   
+                    player.lives = player.lives - 1;
+                    player.reset();
+                }
             });
+            if (player.y === -10) {
+                player.score = player.score + 1;
+                player.reset();
+            }
         }
         /* This function initially draws the "game level", it will then call
          * the renderEntities function. Remember, this function is called every
@@ -147,9 +153,9 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-
-
+        
         renderEntities();
+
     }
 
     /* This function is called by the render function and is called on each game
@@ -157,14 +163,17 @@ var Engine = (function(global) {
      * on your enemy and player entities within app.js
      */
     function renderEntities() {
-        /* Loop through all of the objects within the ies array and call
+        /* Loop through all of the objects within the enemies array and call
          * the render function you have defined.
          */
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
-
         player.render();
+        select.render(); 
+        select.renderSelect();
+   
+
     }
 
     /* This function does nothing but it could have been a good place to
@@ -172,12 +181,7 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
-        player.lives = player.lives - 1;
-        player.x = 200;
-        player.y = 390;
-        console.log(player.lives);
-
+        //this.selectScreen = true;
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -189,7 +193,12 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/char-pink-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-cat-girl.png',
+        'images/char-princess-girl.png',
+        'images/Selector.png'
     ]);
     Resources.onReady(init);
 
