@@ -1,10 +1,21 @@
 frontend-nanodegree-arcade-game
 ===============================
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
+This game is a re-creation of Frogger. HTML5 canvas engine was supplied. 
 
-for self-checking their submission.
+Features added:
+	Option to select character on game load
+	Event listeners on [space],[enter],[directional_keys],
+	Enemies loop horizontally across game board
+	Ability to move player character.
+	Screen overlay to track Lives, Score
+	Brief instructions on screen when starting
+	Collision detection between player, enemy, and opposite wall.
 
-This game is a re-creation of Frogger. HTML5 canvas engine was supplied. Additions I've added so far are to create Enemy object instances, which then update and walk across the screen.
-
-Currently I am in the process of creating player input events, a collision checker, and automatic addition of new enemy objects (which are currently bugged). 
+Instructions:
+	1) Load index.html in Browser.
+	2) Use left/right directionals to select character.
+	3) Press enter when ready to start game.
+	4) Use up/right/down/left keys to control character.
+	5) Score awarded when opposite side reached.
+	6) Lose 1 life on enemy collision.
