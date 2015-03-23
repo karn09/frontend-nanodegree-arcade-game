@@ -59,6 +59,7 @@ Player.prototype.reset = function() {
     if (this.lives <= 0) {
         this.gameState = 0;
         this.lives = 4;
+        this.score = 0;
     }
 };
 

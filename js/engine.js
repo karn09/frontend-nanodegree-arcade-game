@@ -57,7 +57,7 @@ var Engine = (function(global) {
          * function again as soon as the browser is able to draw another frame.
          */
         win.requestAnimationFrame(main);
-    };
+    }
 
     /* This function does some initial setup that should only occur once,
      * particularly setting the lastTime variable that is required for the
@@ -95,7 +95,7 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        player.update();
+        //player.update(); // removed player.update, unnecessary because player model updates being updated in other functions
     }
 
     function checkCollisions() {
@@ -171,6 +171,7 @@ var Engine = (function(global) {
         });
         player.render();
         select.render(); 
+
     }
 
     /* This function does nothing but it could have been a good place to

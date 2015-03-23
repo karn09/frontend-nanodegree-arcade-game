@@ -19,3 +19,8 @@ Instructions:
 	4) Use up/right/down/left keys to control character.
 	5) Score awarded when opposite side reached.
 	6) Lose 1 life on enemy collision.
+
+Additional resources used:
+	Was not sure about collision checker, used: 
+	https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+	
