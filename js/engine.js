@@ -95,9 +95,16 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        //player.update(); // removed player.update, unnecessary because player model updates being updated in other functions
+       /* I removed the call to player.update(), which is unnecessary 
+        * as the player model goes into a loop once renderEntities() is called  
+        * 
+        * player.update();*/  
     }
 
+    /* checkCollisions(), function will check x & y value within enemy & player object
+     * on each update(dt) function call. This algorithm is based off of:
+     * https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+     */
     function checkCollisions() {
             allEnemies.forEach(function(enemy) {
 
@@ -164,7 +171,7 @@ var Engine = (function(global) {
      */
     function renderEntities() {
         /* Loop through all of the objects within the enemies array and call
-         * the render function you have defined.
+         * the render function you have defined. Added call to select.render()
          */
         allEnemies.forEach(function(enemy) {
             enemy.render();
@@ -179,7 +186,6 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        //this.selectScreen = true;
     }
 
     /* Go ahead and load all of the images we know we're going to need to
