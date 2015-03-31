@@ -92,14 +92,11 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(keycode) {
     if (keycode === 'up' && this.y > 0) {
         this.y -= 80;
-    }
-    if (keycode === 'down' && this.y < 380) {
+    } else if (keycode === 'down' && this.y < 380) {
         this.y += 80;
-    }
-    if (keycode === 'left' && this.x > 0) {
+    } else if (keycode === 'left' && this.x > 0) {
         this.x -= 100;
-    }
-    if (keycode === 'right' && this.x < 400) {
+    } else if (keycode === 'right' && this.x < 400) {
         this.x += 100;
     }
 };
@@ -171,12 +168,10 @@ Select.prototype.handleInput = function(keycode) {
     if (keycode === 'left' && this.x > 50) {
         this.x -= 100; 
         this.chosen = this.chosen - 1; 
-    }
-    if (keycode === 'right' && this.x < 400) {
+    } else if (keycode === 'right' && this.x < 400) {
         this.x += 100; 
         this.chosen = this.chosen + 1; 
-    }
-    if (keycode === 'enter') {
+    } else if (keycode === 'enter') {
         this.update(); // call update to set gameState and player chosen
     }
 
